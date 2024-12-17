@@ -1,0 +1,35 @@
+{
+  "name": "express-app-with-fibonacci-series-clustering",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cluster": "node server-cluster.js",
+    "workers": "nodemon server-workers.js",
+    "app": "node server.js",
+    "artillery": "artillery quick --count 10 -n 20 'http://localhost:3000?number=20'",
+    "loadtest": "loadtest -n 1000 -c 100 'http://localhost:3000?number=20'",
+    "pm2:eco": "pm2 start ecosystem.config.js",
+    "pm2:stop:all": "pm2 stop all",
+    "pm2:start:all": "pm2 start all",
+    "pm2:delete:all": "pm2 delete all",
+    "rmq": "pm2 start rmq/ecosystem.config.js",
+    "redis:cache": "pm2 start redis-cache/ecosystem.config.js",
+    "redis:broker": "pm2 start fib-redis-broker/ecosystem.config.js",
+    "nginx": "pm2 start redis-cache-nginx-load-balancer/ecosystem.config.js"
+  },
+  "type": "commonjs",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.19.2",
+    "node-fetch": "^2.7.0",
+    "pug": "^2.0.4",
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "amqplib": "^0.10.4"
+  }
+}
